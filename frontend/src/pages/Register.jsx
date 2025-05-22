@@ -13,12 +13,13 @@ const Register = () => {
 
     return (
         <div className='flex h-screen justify-center items-center gap-15'>
-            <div className='flex flex-col gap-16 w-sm font-normal'>
+            <div className='flex flex-col gap-8 w-sm font-normal'>
                 <Title />
                 <form onSubmit={handleSubmit(onsubmit)} className='flex gap-6 flex-col'>
+                    <p className='font-bold text-lg flex justify-center'>Create an account</p>
                     <div className='flex flex-col gap-8'>
                         <div className='flex flex-col gap-6'>
-                            <div className='flex gap-2'>
+                            <div className='flex gap-2 w-full'>
                                 <div className='flex flex-col gap-1'>
                                     <label className='font-medium text-gray-900' htmlFor="email">First Name</label>
                                     <input className='border rounded py-3 px-4 text-gray-500' type="text" {...register('firstName')} placeholder='Firstname' />
@@ -29,8 +30,9 @@ const Register = () => {
                                 </div>
                             </div>
                             <div>
-                                <input className='border rounded py-3 px-4 text-gray-500' type="email" />
+                                <input className='w-full border rounded py-3 px-4 text-gray-500' type="email" {...register('email')} />
                             </div>
+                            <input type="phone" />
                             <div className='flex flex-col gap-2 relative'>
                                 <label className='flex justify-between' htmlFor="password"><span>Passwords</span> <span className='text-xs text-teal-600'>Forget Password?</span></label>
                                 <input className='border rounded py-3 px-4 pr-10 text-gray-400' type={showPassword ? 'text' : 'password'} {...register('password')} placeholder='' />
