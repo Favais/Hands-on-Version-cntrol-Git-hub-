@@ -42,6 +42,7 @@ console.log(res)
             <div className='flex flex-col gap-16 w-sm font-normal'>
                 <Title />
                 <form onSubmit={handleSubmit(onsubmit)} className='flex gap-6 flex-col'>
+                    <h1>Login with the details in input field</h1>
                     <div className='flex flex-col gap-8'>
                         <div className='flex flex-col gap-6'>
                             <div className='flex flex-col gap-2'>
@@ -57,7 +58,7 @@ console.log(res)
                             </div>
                         </div>
                         <div>
-                            <button className='py-3 px-4 w-full bg-teal-600 rounded text-white'>Login</button>
+                            <button className='py-3 px-4 w-full bg-teal-600 rounded text-white cursor-pointer'>Login</button>
                         </div>
                     </div>
                 </form>
