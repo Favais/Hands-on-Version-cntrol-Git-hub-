@@ -25,29 +25,35 @@ const userLogin = async (req, res) => {
 }
 
 const userRegister = async (req, res) => {
-    const { firstName, lastName, email, dob, phone, password, address, gender } = req.body
+    try {
+        const { firstName, lastName, email, dob, phone, password, address, gender } = req.body;
 
-    //check if user exist
-    const isUser = await userModel.findOne({ email })
-    if (isUser) {
-        return res.json({ success: false, message: 'User already exist, Login' })
+        // check if user exists
+        const isUser = await userModel.findOne({ email });
+        if (isUser) {
+            return res.json({ success: false, message: 'User already exists, Login' });
+        }
+
+        const newUser = new userModel({
+            firstName,
+            lastName,
+            email,
+            phone,
+            password,
+            address,
+            gender
+        });
+
+        const user = await newUser.save();
+        const token = createToken(user._id);
+
+        res.json({ success: true, token });
+    } catch (error) {
+        console.error("Registration Error:", error.message);
+        res.status(500).json({ success: false, message: 'Server error during registration' });
     }
+};
 
-    const newUser = new userModel({
-        firstName,
-        lastName,
-        email,
-        phone,
-        password,
-        address,
-        gender
-    })
-    const user = await newUser.save()
-
-    const token = createToken(user._id)
-
-    res.json({ success: true, token })
-}
 
 const addAccount = async (req, res) => {
     const { userId, accountId, accType, balance, currency, createdAt, bank, accountNumber } = req.body
